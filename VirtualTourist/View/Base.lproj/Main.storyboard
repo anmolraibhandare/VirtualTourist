@@ -45,29 +45,30 @@
                                     <outletCollection property="gestureRecognizers" destination="8YU-iV-urc" appends="YES" id="4Cy-ME-Kcs"/>
                                 </connections>
                             </mapView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap on pins to Delete" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sYd-9g-l7g">
-                                <rect key="frame" x="0.0" y="760" width="414" height="46"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aGP-eq-7cB">
+                                <rect key="frame" x="0.0" y="761" width="414" height="46"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="414" id="Wkk-sd-5y4"/>
-                                    <constraint firstAttribute="height" constant="46" id="mkY-XJ-YZb"/>
+                                    <constraint firstAttribute="width" constant="414" id="8fl-am-9tI"/>
+                                    <constraint firstAttribute="height" constant="46" id="Zxy-Yg-HNq"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" red="1" green="1" blue="0.99999994039999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <state key="normal" title="Tap on pins to Delete">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="l8v-E2-bl6" firstAttribute="bottom" secondItem="sYd-9g-l7g" secondAttribute="bottom" constant="56" id="FEV-Gp-eaB"/>
-                            <constraint firstItem="sYd-9g-l7g" firstAttribute="top" secondItem="l8v-E2-bl6" secondAttribute="top" constant="672" id="LBD-cq-ObU"/>
-                            <constraint firstItem="sYd-9g-l7g" firstAttribute="centerX" secondItem="XOd-4N-HaE" secondAttribute="centerX" id="NOv-qi-mvH"/>
+                            <constraint firstItem="aGP-eq-7cB" firstAttribute="trailing" secondItem="l8v-E2-bl6" secondAttribute="trailing" id="BLu-eG-81a"/>
+                            <constraint firstItem="l8v-E2-bl6" firstAttribute="bottom" secondItem="aGP-eq-7cB" secondAttribute="bottom" constant="55" id="JWq-jw-t0r"/>
+                            <constraint firstItem="aGP-eq-7cB" firstAttribute="top" secondItem="l8v-E2-bl6" secondAttribute="top" constant="673" id="f0c-P5-uFp"/>
+                            <constraint firstItem="aGP-eq-7cB" firstAttribute="leading" secondItem="l8v-E2-bl6" secondAttribute="leading" id="zs8-Db-wbg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="l8v-E2-bl6"/>
                     </view>
                     <navigationItem key="navigationItem" title="Vitual Tourist" id="jeo-9C-ZVW"/>
                     <connections>
-                        <outlet property="deletePin" destination="sYd-9g-l7g" id="q9Q-CE-NR2"/>
+                        <outlet property="deletePin" destination="aGP-eq-7cB" id="p5A-Px-n67"/>
                         <outlet property="mapView" destination="uK4-7z-7rQ" id="zas-lp-FQe"/>
                         <segue destination="4y0-Pm-uBj" kind="show" identifier="PinPhotos" id="TVV-fQ-P8E"/>
                     </connections>
@@ -81,7 +82,7 @@
                 <pinchGestureRecognizer id="8YU-iV-urc"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zvW-Ji-z0r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="555" y="82"/>
+            <point key="canvasLocation" x="553.62318840579712" y="81.696428571428569"/>
         </scene>
         <!--Photo View Controller-->
         <scene sceneID="WJc-nv-nLL">
@@ -97,8 +98,8 @@
                                     <constraint firstAttribute="height" constant="244" id="CeJ-UL-i44"/>
                                 </constraints>
                             </mapView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="piZ-X8-F2G">
-                                <rect key="frame" x="0.0" y="293" width="414" height="569"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="piZ-X8-F2G">
+                                <rect key="frame" x="0.0" y="293" width="414" height="603"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Dhk-86-dOG">
                                     <size key="itemSize" width="128" height="128"/>
@@ -153,6 +154,7 @@
                             <constraint firstItem="OB1-Yc-fX7" firstAttribute="trailing" secondItem="piZ-X8-F2G" secondAttribute="trailing" id="WEE-Fk-QGf"/>
                             <constraint firstItem="piZ-X8-F2G" firstAttribute="top" secondItem="aU7-gQ-7bt" secondAttribute="top" constant="205" id="frd-kC-5Q9"/>
                             <constraint firstItem="oPi-Mq-f5U" firstAttribute="top" secondItem="HYn-v9-VlS" secondAttribute="topMargin" constant="-35" id="kEC-1A-Uky"/>
+                            <constraint firstItem="piZ-X8-F2G" firstAttribute="top" secondItem="oPi-Mq-f5U" secondAttribute="bottom" constant="-4" id="lom-MK-7su"/>
                             <constraint firstItem="OB1-Yc-fX7" firstAttribute="leading" secondItem="oPi-Mq-f5U" secondAttribute="leading" id="m2W-Qf-lID"/>
                             <constraint firstItem="OB1-Yc-fX7" firstAttribute="trailing" secondItem="oPi-Mq-f5U" secondAttribute="trailing" id="oqx-EK-iq6"/>
                             <constraint firstItem="OB1-Yc-fX7" firstAttribute="leading" secondItem="piZ-X8-F2G" secondAttribute="leading" id="pUD-0D-dDo"/>
