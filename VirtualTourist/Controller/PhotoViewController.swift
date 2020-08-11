@@ -11,7 +11,7 @@ import UIKit
 import CoreData
 import MapKit
 
-class PhotoViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class PhotoViewController: UIViewController, UICollectionViewDelegate ,UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
 
     @IBOutlet weak var mapView: MKMapView!
@@ -27,7 +27,7 @@ class PhotoViewController: UIViewController, UICollectionViewDelegateFlowLayout,
     var photos: [Photo] = []
     var pin: Pin!
     var toDelete: [Int] = []{
-        
+    
         didSet {
             if toDelete.count > 0 {
                 newCollection.setTitle("Remove Pictures", for: .normal)
@@ -126,7 +126,7 @@ class PhotoViewController: UIViewController, UICollectionViewDelegateFlowLayout,
                 let delegate = UIApplication.shared.delegate as! AppDelegate
                 let dataController = delegate.dataController
                 let photo = Photo(index: flickrImages.index{$0 === image}!, imageURL: image.imageURL(), imageData: nil, context: dataController.context)
-                try dataController.autoSaveViewContext()
+                try dataController.saveContext()
             } catch {
                 print("Add Failed")
             }
@@ -200,7 +200,7 @@ class PhotoViewController: UIViewController, UICollectionViewDelegateFlowLayout,
             }
         }
         do {
-            try setUpCoreDataStack().autoSaveViewContext()
+            try setUpCoreDataStack().saveContext()
         } catch {
             print("Remove Failed")
         }
@@ -208,14 +208,42 @@ class PhotoViewController: UIViewController, UICollectionViewDelegateFlowLayout,
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        <#code#>
+        return photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! PhotoCell
+        cell.initPhotos(photos[indexPath.row])
+        return cell
     }
     
-
-
-
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        toDelete = selectToDelete(indexPath: collectionView.indexPathsForSelectedItems!)
+        let cell = collectionView.cellForItem(at: indexPath)
+        DispatchQueue.main.async {
+            cell?.contentView.alpha = 0.5
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        toDelete = selectToDelete(indexPath: collectionView.indexPathsForSelectedItems!)
+        let cell = collectionView.cellForItem(at: indexPath)
+        DispatchQueue.main.async {
+            cell?.contentView.alpha = 1
+        }
+    }
+    
+    func selectToDelete(indexPath: [IndexPath]) -> [Int] {
+        var selected:[Int] = []
+        for indexPath in indexPath {
+            selected.append(indexPath.row)
+        }
+        return selected
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return spacing
+    }
+    
+    
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		265E8CB824E33065003F931F /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265E8CB724E33065003F931F /* PhotoCell.swift */; };
 		26FFB99724DCBDBF00962E6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFB99624DCBDBF00962E6A /* AppDelegate.swift */; };
 		26FFB99924DCBDBF00962E6A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFB99824DCBDBF00962E6A /* SceneDelegate.swift */; };
 		26FFB99B24DCBDBF00962E6A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFB99A24DCBDBF00962E6A /* MapViewController.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		265E8CB724E33065003F931F /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		26FFB99324DCBDBF00962E6A /* VirtualTourist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirtualTourist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26FFB99624DCBDBF00962E6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26FFB99824DCBDBF00962E6A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				26FFB9BB24E1C8C900962E6A /* Photo+CoreDataProperties.swift */,
 				26FFB9B824E1C8C900962E6A /* Pin+CoreDataClass.swift */,
 				26FFB9B924E1C8C900962E6A /* Pin+CoreDataProperties.swift */,
+				265E8CB724E33065003F931F /* PhotoCell.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 				26FFB9C824E1E31E00962E6A /* DataController.swift in Sources */,
 				26FFB9BD24E1C8C900962E6A /* Pin+CoreDataProperties.swift in Sources */,
 				26FFB9C624E1CD9700962E6A /* FlickrAPI.swift in Sources */,
+				265E8CB824E33065003F931F /* PhotoCell.swift in Sources */,
 				26FFB9BC24E1C8C900962E6A /* Pin+CoreDataClass.swift in Sources */,
 				26FFB99B24DCBDBF00962E6A /* MapViewController.swift in Sources */,
 				26FFB9C224E1CD3700962E6A /* PhotoViewController.swift in Sources */,
