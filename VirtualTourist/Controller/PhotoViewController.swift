@@ -245,12 +245,6 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate ,UICollect
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = UIScreen.main.bounds.width / 3 - spacing
-        let height = width
-        return CGSize(width: width, height: height)
-    }
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         toDelete = selectToDelete(indexPath: collectionView.indexPathsForSelectedItems!)
         let cell = collectionView.cellForItem(at: indexPath)
@@ -274,8 +268,22 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate ,UICollect
         }
         return selected
     }
+    
+    // MARK: Collection view flow layout Delegate functions
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return spacing
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let bounds = collectionView.bounds
+//        let width = UIScreen.main.bounds.width / 3 - spacing
+//        let height = width
+        return CGSize(width: bounds.width / 2 , height: bounds.height / 4)
+    }
+    
 }
