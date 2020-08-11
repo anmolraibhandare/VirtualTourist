@@ -25,7 +25,7 @@ class FlickrAPI {
                 return
             }
             
-            let range = Range<Int>(uncheckedBounds: (lower: 14, upper: data!.count-1))
+            let range = Range(uncheckedBounds: (14, data!.count-1))
             let newData = data?.subdata(in: range)
             
             if let json = try? JSONSerialization.jsonObject(with: newData!) as? [String:Any],

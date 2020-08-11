@@ -126,7 +126,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
                 if pin.latitude == coordinate.latitude && pin.longitude == coordinate.longitude {
                     do {
                         setUpCoreDataStack().context.delete(pin)
-//                        try setUpCoreDataStack().saveContext()
+                        try setUpCoreDataStack().saveContext()
                     } catch {
                         print("Failed")
                     }
@@ -144,7 +144,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
 
             for pin in currentPins {
                 if pin.latitude == coordinate.latitude && pin.longitude == coordinate.longitude {
-                    destination.pin = pin
+                    destination.corePin = pin
                     break
                 }
             }
