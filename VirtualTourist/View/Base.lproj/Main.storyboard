@@ -141,6 +141,9 @@
                                 <state key="normal" title="New Collection">
                                     <color key="titleColor" red="1" green="1" blue="0.99999994039999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
+                                <connections>
+                                    <action selector="newCollectionButtonResult:" destination="4y0-Pm-uBj" eventType="touchUpInside" id="yrv-bT-qY2"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
