@@ -54,7 +54,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
         super.viewDidLoad()
 
         navigationItem.rightBarButtonItem = editButtonItem
-        gestureMode = false
+        editButtonMode = false
         let savedPins = loadSavedPins()
 
         if savedPins != nil {
