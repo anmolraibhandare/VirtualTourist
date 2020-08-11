@@ -12,6 +12,7 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    // Injecting DataController dependency 
     var window: UIWindow?
     let dataController = DataController(modelName: "VirtualTourist")!
 

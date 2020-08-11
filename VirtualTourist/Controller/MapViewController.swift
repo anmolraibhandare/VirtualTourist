@@ -12,13 +12,20 @@ import MapKit
 
 class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDelegate {
 
+    // MARK: IBOutlets
+    
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var deletePin: UIView!
+    
+    // MARK: Variables
     
     var currentPins:[Pin] = []
     var editButtonMode: Bool = false
     var gestureMode: Bool = false
 
+    
+    // MARK: Setup core data stack in MapViewController and Fetch Results
+    
     func setUpCoreDataStack() -> DataController {
         let delegate = UIApplication.shared.delegate as! AppDelegate
         return delegate.dataController
@@ -33,6 +40,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
         return NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController.context, sectionNameKeyPath: nil, cacheName: nil)
     }
 
+    // MARK: Preload the saved pins
+    
     func loadSavedPins() -> [Pin]? {
         do {
             var pinArray:[Pin] = []
@@ -66,6 +75,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
             }
         }
     }
+    
+    // MARK: Annotations
 
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if !editButtonMode {
@@ -82,6 +93,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
         return true
     }
 
+    // MARK: Action on map when long pressed
+    
     @IBAction func longPressResponse(_ sender: Any) {
 
         if gestureMode {
@@ -136,6 +149,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
         }
     }
 
+    // MARK: Segue to PhotoViewController
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "PinPhotos" {
             let destination = segue.destination as! PhotoViewController

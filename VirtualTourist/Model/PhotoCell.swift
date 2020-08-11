@@ -13,6 +13,8 @@ class PhotoCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     
+    // MARK: Initialize saved photos
+    
     func initPhotos(_ photo: Photo) {
         if photo.imageData != nil {
             DispatchQueue.main.async {
@@ -23,9 +25,11 @@ class PhotoCell: UICollectionViewCell {
         }
     }
     
+    // MARK: Download photos from Flickr
+    
     func downloadPhotos(_ photo: Photo) {
         
-        URLSession.shared.dataTask(with: URL(string: photo.imageURL!)!) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: URL(string: photo.imageURL!)!) { (data, response, error) in
             if error == nil {
                 DispatchQueue.main.async {
                     self.imageView.image = UIImage(data: data! as Data)
@@ -33,8 +37,10 @@ class PhotoCell: UICollectionViewCell {
                 }
             }
         }
-    .resume()
+    task.resume()
     }
+    
+    // MARK: Save Images in core data
     
     func saveImage(photo: Photo, imageData: NSData) {
         do {

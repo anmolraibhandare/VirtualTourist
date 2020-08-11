@@ -13,12 +13,14 @@ import MapKit
 
 class PhotoViewController: UIViewController, UICollectionViewDelegate ,UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
+    // MARK: IBOutlets
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var newCollection: UIButton!
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
+    // MARK: Variables
     
     var coordinate: CLLocationCoordinate2D!
     let spacing:CGFloat = 5
@@ -38,6 +40,7 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate ,UICollect
         }
     }
     
+    // MARK: Setup core data stack in MapViewController and Fetch Results
     
     func setUpCoreDataStack() -> DataController {
         let delegate = UIApplication.shared.delegate as! AppDelegate
@@ -53,6 +56,8 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate ,UICollect
 
         return NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController.context, sectionNameKeyPath: nil, cacheName: nil)
     }
+    
+    // MARK: Preload the saved pins
 
     func loadSavedPhotos() -> [Photo]? {
         do {
@@ -69,26 +74,30 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate ,UICollect
             return nil
         }
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let gap = 3.0
+        // Flowlayout
+        
+        let gap = 2.0
         let dimension = (Double(self.view.frame.size.width) - (2 * gap)) / 3.0
 
         flowLayout.minimumLineSpacing = spacing
         flowLayout.minimumInteritemSpacing = spacing
         flowLayout.itemSize = CGSize(width: dimension, height: dimension)
 
-
+        // Collection view delegate and data source assigned to self
         collectionView.delegate = self
         collectionView.dataSource = self
 
+        // new collection button is displayed
         newCollection.isHidden = false
 
         collectionView.allowsMultipleSelection = true
         addAnnotation()
 
+        // display results
         let savedPhoto = loadSavedPhotos()
         if savedPhoto != nil && savedPhoto?.count != 0 {
             photos = savedPhoto!
@@ -98,6 +107,7 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate ,UICollect
         }
     }
  
+    // MARK: Action when new collection button is pressed
     
     @IBAction func newCollectionButtonResult(_ sender: Any) {
 
@@ -111,6 +121,7 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate ,UICollect
         }
     }
     
+    // unselelect all the selected pins
     
     func unselectAll() {
         for index in collectionView.indexPathsForSelectedItems! {
@@ -118,6 +129,8 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate ,UICollect
             collectionView.cellForItem(at: index)?.contentView.alpha = 1
         }
     }
+    
+    // remove photos
 
     func removePhotos() {
         for index in 0..<photos.count {
@@ -133,6 +146,7 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate ,UICollect
         toDelete.removeAll()
     }
     
+    // display results
     
     func displaySavedResult() {
         DispatchQueue.main.async {
@@ -140,6 +154,8 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate ,UICollect
         }
     }
 
+    // display new results after new collection button is tapped
+    
     func displayNewResult(){
         newCollection.isEnabled = false
         deleteExisting()
@@ -179,6 +195,8 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate ,UICollect
         }
     }
     
+    // MARK: Get flickr images for the location
+    
     func getFlickrImages(completion: @escaping (_ result: [FlickrImage]?) -> Void) {
 
         var resultImages:[FlickrImage] = []
@@ -206,6 +224,7 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate ,UICollect
         }
     }
     
+    // add annotation on map
     
     func addAnnotation() {
         let annotation = MKPointAnnotation()
@@ -213,7 +232,9 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate ,UICollect
         mapView.addAnnotation(annotation)
         mapView.showAnnotations([annotation], animated: true)
     }
-
+    
+    // MARK: Collection view Delegate functions
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return photos.count
     }

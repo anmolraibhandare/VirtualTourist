@@ -16,6 +16,9 @@ class FlickrAPI {
     private static let flickrFormat = "json"
     private static let flickrRange = 10
     
+    
+    // MARK: Get Flickr Images
+    
     static func getImage(latitude: Double, longitude: Double, completion: @escaping ( _ sucess:Bool, _ flickrImage: [FlickrImage]?) -> Void){
         let url = NSMutableURLRequest(url: URL(string: "\(flickrEndpoint)?method=\(flickrSearch)&format=\(flickrFormat)&api_key=\(flickrAPI)&lat=\(latitude)&lon=\(longitude)&radius=\(flickrRange)")!)
         let task = URLSession.shared.dataTask(with: url as URLRequest) { data, response, error in
