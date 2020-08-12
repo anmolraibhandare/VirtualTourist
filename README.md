@@ -1,5 +1,5 @@
 
-# VirtualTourist ![](AppScreenshot/40.png) 
+# VirtualTourist 
 Udacity iOS Nanodegree Project
 
 #### Summary 
